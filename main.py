@@ -3,7 +3,7 @@ load_dotenv()
 
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
-from routers import ingest, search, synthesize, trends
+from routers import ingest, search, synthesize, trends, digest
 import logging, time
 
 logging.basicConfig(level=logging.INFO,
@@ -15,6 +15,7 @@ app.include_router(ingest.router,      prefix="/ingest",     tags=["ingestion"])
 app.include_router(search.router,      prefix="/search",     tags=["search"])
 app.include_router(synthesize.router,  prefix="/synthesize", tags=["synthesis"])
 app.include_router(trends.router,      prefix="/trends",     tags=["trends"])
+app.include_router(digest.router,      prefix="/digest",     tags=["digest"])
 
 @app.middleware("http")
 async def log_requests(request: Request, call_next):
