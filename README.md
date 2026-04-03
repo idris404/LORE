@@ -1,4 +1,6 @@
-# AI Research Intelligence Agent
+# LORE
+
+**Language-based Open Research Engine**
 
 Automated pipeline that monitors arXiv and GitHub for AI research, indexes papers with semantic embeddings, and delivers weekly synthesized digests to Notion — powered by a RAG pipeline over a local Qdrant vector store and a Groq-hosted LLM.
 
@@ -72,8 +74,8 @@ Automated pipeline that monitors arXiv and GitHub for AI research, indexes paper
 Prerequisites: Docker, Docker Compose, a Groq API key, a Notion integration token.
 
 ```bash
-git clone <repo-url>
-cd ai-research-agent
+git clone https://github.com/<your-username>/lore
+cd lore
 
 cp .env.example .env
 # fill in your keys — see the Configuration section below
