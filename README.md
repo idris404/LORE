@@ -189,11 +189,20 @@ Pass `"dry_run": true` to validate the pipeline without writing to Notion.
 
 ## n8n Integration
 
-n8n runs separately and is not part of `docker-compose.yml`. Point an HTTP Request node at the FastAPI service:
+n8n runs separately and is not part of `docker-compose.yml`.
+Connect n8n to the FastAPI Docker network first:
 
-Weekly digest on a cron schedule: `POST http://localhost:8000/digest/run`
+```bash
+docker network connect ai-research-agent_default <n8n-container-name>
+```
 
-Webhook-triggered ingest: `POST http://localhost:8000/ingest/`
+Then point HTTP Request nodes at the FastAPI service by name:
+
+Weekly digest on a cron schedule: `POST http://fastapi:8000/digest/run`
+
+Webhook-triggered ingest: `POST http://fastapi:8000/ingest/`
+
+If n8n is installed locally (not Docker), use `localhost` instead.
 
 ![screenshot](docs/screenshot4.png)
 
