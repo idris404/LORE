@@ -22,3 +22,25 @@ def upsert_point(collection: str, payload: dict, vector: list[float]) -> str:
     client.upsert(collection_name=collection,
                   points=[PointStruct(id=uid, vector=vector, payload=payload)])
     return uid
+
+
+def search_similar(collection: str, query_text: str, top_k: int = 10, source_filter: str | None = None):
+    from services.embeddings import embed_text
+    vector = embed_text(query_text)
+    query_filter = None
+    if source_filter:
+        query_filter = Filter(
+            must=[FieldCondition(key="source", match=MatchValue(value=source_filter))]
+        )
+    return client.search(
+        collection_name=collection,
+        query_vector=vector,
+        limit=top_k,
+        query_filter=query_filter,
+        with_payload=True,
+    )
+
+
+def delete_point(collection: str, point_id: str) -> None:
+    from qdrant_client.models import PointIdsList
+    client.delete(collection_name=collection, points_selector=PointIdsList(points=[point_id]))

@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(for f:*)",
+      "Bash(do echo:*)",
+      "Read(//f/Work/qdrant_storage/ai-research-agent/**)",
+      "Bash(done)"
+    ]
+  }
+}
