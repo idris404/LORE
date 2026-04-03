@@ -32,6 +32,15 @@ async def create_paper(payload: dict) -> dict:
     source = payload.get("source") or "unknown"
     score = payload.get("score")
 
+    # Categories: list for arxiv papers, None/missing for github repos
+    raw_categories = payload.get("categories") or []
+    categories_str = ", ".join(raw_categories) if raw_categories else ""
+
+    # Published: already an ISO 8601 string from arxiv ("2026-03-28T00:00:00+00:00")
+    # Notion date expects "YYYY-MM-DD" for date-only fields
+    published_raw = payload.get("published") or ""
+    published_date = published_raw[:10] if published_raw else ""  # trim to YYYY-MM-DD
+
     properties: dict = {
         "Title": {"title": [{"text": {"content": title}}]},
         "Abstract": {"rich_text": [{"text": {"content": abstract}}]},
@@ -41,6 +50,10 @@ async def create_paper(payload: dict) -> dict:
         properties["URL"] = {"url": url}
     if score is not None:
         properties["Score"] = {"number": round(float(score), 4)}
+    if categories_str:
+        properties["Categories"] = {"rich_text": [{"text": {"content": categories_str}}]}
+    if published_date:
+        properties["Published"] = {"date": {"start": published_date}}
 
     body = {
         "parent": {"database_id": PAPERS_DB},

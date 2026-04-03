@@ -83,28 +83,28 @@ docker-compose up --build
 
 Once running:
 
-| Service | URL |
-|---|---|
-| FastAPI | http://localhost:8000 |
-| Swagger docs | http://localhost:8000/docs |
+| Service          | URL                             |
+| ---------------- | ------------------------------- |
+| FastAPI          | http://localhost:8000           |
+| Swagger docs     | http://localhost:8000/docs      |
 | Qdrant dashboard | http://localhost:6333/dashboard |
 
 ---
 
 ## Configuration
 
-| Variable | Description |
-|---|---|
-| `GROQ_API_KEY` | Groq API key (console.groq.com) |
-| `GROQ_MODEL` | LLM model — default `llama-3.3-70b-versatile` |
-| `GITHUB_TOKEN` | GitHub personal access token — optional, raises rate limit |
-| `NOTION_TOKEN` | Notion integration token (`secret_...` or `ntn_...`) |
-| `NOTION_PAPERS_DB` | Notion Papers database ID |
-| `NOTION_SYNTHESES_DB` | Notion Syntheses database ID |
-| `NOTION_TRENDS_DB` | Notion Trends database ID |
-| `QDRANT_HOST` | `qdrant` inside Docker compose, `localhost` for local dev |
-| `QDRANT_PORT` | Default `6333` |
-| `EMBED_MODEL` | Sentence Transformers model — default `all-MiniLM-L6-v2` |
+| Variable              | Description                                                |
+| --------------------- | ---------------------------------------------------------- |
+| `GROQ_API_KEY`        | Groq API key (console.groq.com)                            |
+| `GROQ_MODEL`          | LLM model — default `llama-3.3-70b-versatile`              |
+| `GITHUB_TOKEN`        | GitHub personal access token — optional, raises rate limit |
+| `NOTION_TOKEN`        | Notion integration token (`secret_...` or `ntn_...`)       |
+| `NOTION_PAPERS_DB`    | Notion Papers database ID                                  |
+| `NOTION_SYNTHESES_DB` | Notion Syntheses database ID                               |
+| `NOTION_TRENDS_DB`    | Notion Trends database ID                                  |
+| `QDRANT_HOST`         | `qdrant` inside Docker compose, `localhost` for local dev  |
+| `QDRANT_PORT`         | Default `6333`                                             |
+| `EMBED_MODEL`         | Sentence Transformers model — default `all-MiniLM-L6-v2`   |
 
 **Notion:** For each database, open it in Notion, go to `...` → Connections, and add your integration. Without this the API returns 404.
 
@@ -231,4 +231,7 @@ ai-research-agent/
 
 ## Screenshot
 
-![screenshot](docs/screenshot.png)
+![screenshot](docs/screenshot1.png)
+![screenshot](docs/screenshot2.png)
+![screenshot](docs/screenshot3.png)
+![screenshot](docs/screenshot4.png)
