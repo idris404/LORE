@@ -17,3 +17,18 @@ services:
       - .env
     environment:
       - QDRANT_HOST=qdrant
+
+  fastapi_v2:
+    build:
+      context: .
+      dockerfile: Dockerfile.v2
+    ports:
+      - "8001:8001"
+    depends_on:
+      - qdrant
+    env_file:
+      - .env
+    environment:
+      - QDRANT_HOST=qdrant
+    command: >
+      bash -c "cd lore_v2 && uvicorn main_v2:app --host 0.0.0.0 --port 8001"
